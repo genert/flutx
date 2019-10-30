@@ -1,7 +1,7 @@
 library flutx_flutter;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:flutter/widgets.dart';
+
+class Consumer<T> extends StatelessWidget implements SingleChildClo{
+
 }

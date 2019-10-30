@@ -23,20 +23,17 @@ class GetParcels extends Action<ParcelState> {
     // We can do some API requests here for example and dispatch result to mutation handler.
     await Future.delayed(const Duration(seconds: 3));
 
-    //
-    await context.dispatch(this);
+    // Commit state change.
+    await context.commit(this);
 
     // or
-    await context.dispatch(this, true);
+    await context.commit(this, true);
 
     // You can also access state if needed.
     print(context.state);
 
     // You can also access root state if needed.
     print(context.rootState);
-
-    // You can dispatch multiple times.
-    await context.dispatch(this, true);
 
     // You can also dispatch other events.
     // You can only commit 1 argument. If you need more arguments to pass, use map type to store these.

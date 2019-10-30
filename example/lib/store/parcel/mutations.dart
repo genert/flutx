@@ -1,3 +1,4 @@
+import 'package:flutx_example/model/parcel.dart';
 import 'package:flutx_example/store/parcel/actions.dart';
 import 'package:flutx_example/store/parcel/state.dart';
 import 'package:flutx/flutx.dart';
@@ -11,9 +12,10 @@ class ParcelMutations extends Mutations<ParcelState> {
   @override
   Stream<ParcelState> mutate(ParcelState state, Action action) async* {
     if (action is GetParcels) {
+      state.hasParcels = true;
+
       // You can access action argument like this.
-      state.hasParcels = action.arg as bool;
-      state.parcels = [Parcel()];
+      state.parcels = action.arg as List<Parcel>;
     } else if (action is SaveParcels) {
       print(action.arg as Map<String, dynamic>);
     } else if (action is CheckParcels) {
