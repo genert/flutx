@@ -9,23 +9,18 @@ import 'package:flutx/flutx.dart';
 /// Mutation only purpose is to change the state based on action if needed.
 class ParcelMutations extends Mutations<ParcelState> {
   @override
-  Stream<ParcelState> mutate(ParcelState state, Action action) {
+  Stream<ParcelState> mutate(ParcelState state, Action action) async* {
     if (action is GetParcels) {
       // You can access action argument like this.
       state.hasParcels = action.arg as bool;
       state.parcels = [Parcel()];
-
-      // State is different therefore refresh will be triggered for those who listen.
-      yield state;
     } else if (action is SaveParcels) {
       print(action.arg as Map<String, dynamic>);
-      yield state;
-    } else {
-      // This will not refresh state since nothing has changed.
-      yield state;
+    } else if (action is CheckParcels) {
+      print("checking parcels");
     }
 
-    // You can only yield 1 state change! If more is yielded, these will be
-    // discared and you will receive warning!
+    // If yielded state differs from old state, then refresh is triggered for state consumers.
+    yield state;
   }
 }
